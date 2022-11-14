@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <link rel="icon" type="image/png" href="clock.png"/>
+  
+    <style>
+      .Clock {
+        margin: 0;
+        background-image: linear-gradient(
+          to right,
+          rgba(255, 0, 0, 0),
+          rgba(255, 0, 0, 1)
+        );
+        height: 250px;
+        display: flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        margin-top: 200px;
+        width: 100%;
+        font-size: 50px;
+        transition: width 2s, height 2s;
+        animation-name: example;
+        animation-duration: 4s;
+        -webkit-box-reflect: below 0px
+          linear-gradient(to bottom, rgba(230, 220, 220, 0), rgba(0, 0, 0, 0.6));
+      }
+      @keyframes example {
+        from {
+          background-color: rgb(160, 155, 155);
+        }
+        to {
+          background-color: rgb(62, 240, 247);
+        }
+      }
+      .Clock:hover {
+        width: 30%;
+        height: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="main" class="Clock"></div>
+
+    <script type="text/javascript">
+      function timeD() {
+        var date = new Date();
+        var hr = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        var session = "AM";
+        if (hr == 0) {
+          hr = 12;
+        }
+        if (hr > 12) {
+          hr = hr - 12;
+          session = "PM";
+        }
+        hr = hr < 10 ? "0" + hr : hr;
+        min = min < 10 ? "0" + min : min;
+        sec = sec < 10 ? "0" + sec : sec;
+        document.getElementById("main").innerHTML =
+          hr + ":" + min + ":" + sec + ":" + session;
+        setTimeout(timeD, 1000);
+      }
+      timeD();
+
+      
+    </script>
+  </body>
+</html>
